@@ -94,7 +94,7 @@
         bottom: 0;
         transform: translate(-50%);
         left: 50%;
-        
+
         opacity: 0;
       }
 
@@ -112,6 +112,110 @@
       
       .hideText {
         opacity: 0;
+      }
+
+      /* 시크릿 코드1 */
+      @keyframes rtanee {
+        0% {
+          bottom: 0px;
+        }
+        100% {
+          bottom: 100px;
+        }
+      }
+
+      .absolute-rtan-area {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+
+        /* 아이콘 이동 애니메이션 관련 설정 */
+        animation-name: rtanee;
+        animation-duration: 2s;
+        animation-duration: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-fill-mode: forwards;
+      }
+
+      .absolute-rtan-area img {
+        width: 150px;
+        cursor: pointer;
+      }
+
+      /* 시크릿 코드2 */
+      #modal.modal-overlay {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(1.5px);
+        border-radius: 10px;
+        display: none;
+      }
+
+      #modal .modal-window {
+        background: white;
+        box-shadow: 0 8px 32px 0 grey;
+        backdrop-filter: blur(13.5px);
+        -webkit-backdrop-filter: blur(13.5px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        width: 350px;
+        height: 350px;
+        position: relative;
+        padding: 10px;
+      }
+
+      #modal .close-area {
+        display: inline;
+        float: right;
+        padding-right: 10px;
+        cursor: pointer;
+        color: black;
+        position: absolute;
+        right: 0;
+      }
+
+      #modal .content {
+        margin-top: 10px;
+        padding: 0px 10px;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #modal .content img {
+        width: 65%;
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+
+      #modal .content span {
+        font-size: 20px;
+        margin: 2px;
+        font-weight: 900;
+        font-family: auto;
+      }
+
+      #modal .content button {
+        position: absolute;
+        bottom: 20px;
+        width: 90%;
+        height: 50px;
+        color: white;
+        background: green;
+        border: 0;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
       }
 
 	</style>
@@ -152,6 +256,17 @@
     // 1. 선택된 사진의 숫자를 가진 텍스트를 alert 형태로 출력해줌
     function alertText(number) {
       alert(`${number}번째 추억이에요! 눌러주셔서 감사합니다 :)`);
+    }
+
+    // 시크릿코드 추가기능
+    function showModal() {
+      const modal = document.getElementById("modal");
+      modal.style.display = "flex";
+    }
+    
+    function closeModal() {
+      const modal = document.getElementById("modal");
+      modal.style.display = "none";
     }
   </script>
   </head>
@@ -197,6 +312,24 @@
       <div class="footer">
         <p class="f-title">Happy Lunch Time</p>
         <p class="f-date">2024.02.21</p>
+      </div>
+    </div>
+    <!-- 시크릿코드 1 -->
+    <div class="absolute-rtan-area">
+      <img src="https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/free_photos/rtans.png" onclick="showModal()" />
+    </div>
+    <!-- 시크릿코드2 -->
+    <div id="modal" class="modal-overlay">
+      <div class="modal-window">
+        <div class="close-area" onclick="closeModal()">𝗫</div>
+        <div class="content">
+          <img src="https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/free_photos/rtans.png" />
+          <span>여기까지 온 당신</span>
+          <span>개발자가 적성일지도?</span>
+          <button onclick="location.href=`https://spartacodingclub.kr/`">
+            0원으로 개발자 시작하기
+          </button>
+        </div>
       </div>
     </div>
 </body>
